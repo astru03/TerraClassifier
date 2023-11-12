@@ -54,16 +54,16 @@ function showAlert1() {
   }
 
   // Erstelle EasyButtons für die Aktionen des Menüs
-  var button1 = L.easyButton('fa-flag', showAlert1, 'Sentinal-2');
-  var button2 = L.easyButton('fa-bicycle', showAlert2, 'Trainigsdaten');
-  var button3 = L.easyButton('fa-car', showAlert3, 'Algorithmus');
-
+  var button1 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/sentinal_icon.png?token=GHSAT0AAAAAACKGDJTZMZOFUECJ56QXRFMIZKQYC6Q" style="width: 20px; height: 20px;">', showAlert1, 'Sentinal-2');
+  var button2 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/trainigsdaten_icon.png?token=GHSAT0AAAAAACKGDJTZODB7U6WN43DE5SAYZKQYD3Q" style="width: 20px; height: 20px;">', showAlert2, 'Trainigsdaten');
+  var button3 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/algorithmus_icon.png?token=GHSAT0AAAAAACKGDJTZQXL2SXNVR7X5DHTWZKQYDUQ" style="width: 20px; height: 20px;">', showAlert3, 'Algorithmus');
+  
   // Erstelle den Haupt-Button (Burgermenü-Button)
   var toggleMenuButton = L.easyButton({
     position: 'topright',
     states: [{
       stateName: 'closed',
-      icon: '<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/menu_icon.png?token=GHSAT0AAAAAACKGDJTZ5ROPGJ5AVL4Z72QUZKQXY6A" style="width: 20px; height: 20px;">',
+      icon: '<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/menu_icon.png?token=GHSAT0AAAAAACKGDJTZM2L5FDBDNYDSUW6QZKQYERA" style="width: 20px; height: 20px;">',
       title: 'Öffne Menü',
       onClick: function (btn, map) {
         btn.state('open');
@@ -73,7 +73,7 @@ function showAlert1() {
       }
     }, {
       stateName: 'open',
-      icon: '<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/menu_icon.png?token=GHSAT0AAAAAACKGDJTZ5ROPGJ5AVL4Z72QUZKQXY6A" style="width: 20px; height: 20px;">',
+      icon: '<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/menu_icon.png?token=GHSAT0AAAAAACKGDJTZM2L5FDBDNYDSUW6QZKQYERA" style="width: 20px; height: 20px;">',
       title: 'Schließe Menü',
       onClick: function (btn, map) {
         btn.state('closed');
