@@ -54,16 +54,16 @@ function showAlert1() {
   }
 
   // Erstelle EasyButtons für die Aktionen des Menüs
-  var button1 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/sentinal_icon.png?token=GHSAT0AAAAAACKGDJTYA7J43O2X62EPS2Z4ZKQYRHA" style="width: 20px; height: 20px;">', showAlert1, 'Sentinal-2');
-  var button2 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/trainigsdaten_icon.png?token=GHSAT0AAAAAACKGDJTZHOBNDS7VNHJXRQSYZKQYRIA" style="width: 20px; height: 20px;">', showAlert2, 'Trainigsdaten');
-  var button3 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/algorithmus_icon.png?token=GHSAT0AAAAAACKGDJTYXBX73SJOK46IV6XSZKQYRGQ" style="width: 20px; height: 20px;">', showAlert3, 'Algorithmus');
+  var button1 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/sentinal_icon.png" style="width: 20px; height: 20px;">', showAlert1, 'Sentinal-2');
+  var button2 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/trainigsdaten_icon.png" style="width: 20px; height: 20px;">', showAlert2, 'Trainigsdaten');
+  var button3 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/algorithmus_icon.png" style="width: 20px; height: 20px;">', showAlert3, 'Algorithmus');
   
   // Erstelle den Haupt-Button (Burgermenü-Button)
   var toggleMenuButton = L.easyButton({
     position: 'topright',
     states: [{
       stateName: 'closed',
-      icon: '<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/menu_icon.png?token=GHSAT0AAAAAACKGDJTZBEJWEQ5IAWD5VXMIZKQYOIQ" style="width: 20px; height: 20px;">',
+      icon: '<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/menu_icon.png" style="width: 20px; height: 20px;">',
       title: 'Öffne Menü',
       onClick: function (btn, map) {
         btn.state('open');
@@ -73,7 +73,7 @@ function showAlert1() {
       }
     }, {
       stateName: 'open',
-      icon: '<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/menu_icon.png?token=GHSAT0AAAAAACKGDJTZBEJWEQ5IAWD5VXMIZKQYOIQ" style="width: 20px; height: 20px;">',
+      icon: '<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/menu_icon.png" style="width: 20px; height: 20px;">',
       title: 'Schließe Menü',
       onClick: function (btn, map) {
         btn.state('closed');
