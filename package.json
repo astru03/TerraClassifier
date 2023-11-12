@@ -26,6 +26,7 @@
     "jquery": "^3.7.1",
     "leaflet": "^1.9.4",
     "leaflet-draw": "^1.0.4",
+    "leaflet-easybutton": "^2.4.0",
     "nodemon": "^3.0.1"
   }
 }
