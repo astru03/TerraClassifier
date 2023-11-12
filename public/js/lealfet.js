@@ -54,9 +54,9 @@ function showAlert1() {
   }
 
   // Erstelle EasyButtons für die Aktionen des Menüs
-  var button1 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/sentinal_icon.png?token=GHSAT0AAAAAACKGDJTZMZOFUECJ56QXRFMIZKQYC6Q" style="width: 20px; height: 20px;">', showAlert1, 'Sentinal-2');
-  var button2 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/trainigsdaten_icon.png?token=GHSAT0AAAAAACKGDJTZODB7U6WN43DE5SAYZKQYD3Q" style="width: 20px; height: 20px;">', showAlert2, 'Trainigsdaten');
-  var button3 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/algorithmus_icon.png?token=GHSAT0AAAAAACKGDJTZQXL2SXNVR7X5DHTWZKQYDUQ" style="width: 20px; height: 20px;">', showAlert3, 'Algorithmus');
+  var button1 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/sentinal_icon.png?token=GHSAT0AAAAAACKGDJTYA7J43O2X62EPS2Z4ZKQYRHA" style="width: 20px; height: 20px;">', showAlert1, 'Sentinal-2');
+  var button2 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/trainigsdaten_icon.png?token=GHSAT0AAAAAACKGDJTZHOBNDS7VNHJXRQSYZKQYRIA" style="width: 20px; height: 20px;">', showAlert2, 'Trainigsdaten');
+  var button3 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/algorithmus_icon.png?token=GHSAT0AAAAAACKGDJTYXBX73SJOK46IV6XSZKQYRGQ" style="width: 20px; height: 20px;">', showAlert3, 'Algorithmus');
   
   // Erstelle den Haupt-Button (Burgermenü-Button)
   var toggleMenuButton = L.easyButton({
