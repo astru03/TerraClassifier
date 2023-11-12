@@ -63,7 +63,7 @@ function showAlert1() {
     position: 'topright',
     states: [{
       stateName: 'closed',
-      icon: '<img src="https://raw.githubusercontent.com/MinoruAmaya/SII-2023-2024/main/upload_icon.png" style="width: 15px; height: 15px;">',
+      icon: '<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/menu_icon.png?token=GHSAT0AAAAAACKGDJTZ5ROPGJ5AVL4Z72QUZKQXY6A" style="width: 20px; height: 20px;">',
       title: 'Öffne Menü',
       onClick: function (btn, map) {
         btn.state('open');
@@ -73,7 +73,7 @@ function showAlert1() {
       }
     }, {
       stateName: 'open',
-      icon: 'fa-times',
+      icon: '<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/menu_icon.png?token=GHSAT0AAAAAACKGDJTZ5ROPGJ5AVL4Z72QUZKQXY6A" style="width: 20px; height: 20px;">',
       title: 'Schließe Menü',
       onClick: function (btn, map) {
         btn.state('closed');
