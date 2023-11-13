@@ -18,12 +18,25 @@
         <!-- Leaflet JS -->
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+        <!-- Leaflet-draw plugin CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.min.css">
+
+        <!-- Leaflet-draw plugin JS -->
+        <script src="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.min.js"></script>
+
+        <!-- Leaflet-easy-button plugin CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+
+        <!-- Leaflet-easy-button plugin JS-->
+        <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+
     </head>
     <body>
         <header> 
             <nav class="navbar navbar-expand-md navbar-dark bg-dark" id="mynavbar">
                 <div class="container-fluid">
-                    <a class="navbar-brand fs-4 fw-bold">Terra Classifier</a>
+                    <!-- <a class="navbar-brand fs-4 fw-bold">Terra Classifier</a> -->
+                    <img id="logo" src="https://raw.githubusercontent.com/astru03/TerraClassifier/experimental_branch/public/images/TerraClassifier_LOGO_weiss.png" alt="Logo">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -39,12 +52,11 @@
                     </div>
                 </div>
             </nav>
-            <h1> Modeltraining und Klassifikation </h1>
         </header>
         
         <main>
             <!-- Nach dem Mock-up sollte die Karte den ganzen Bildschirm einnehmen und das Menü darüber liegen. Um die Höhe der Karte über den ganzen Bildschirm zu ziehen wird womöglich eine custom Funktion nötig sein. -->
-            <div class="container-fluid">
+            <div class="container-fluid mt-2" id="mapcontainer">
                 <div id="map"></div>
             </div>
         </main>
@@ -58,6 +70,6 @@
 
         <!-- Utilities -->
         <link rel="stylesheet" type="text/css" href="/css/klassifikation.css">
-        <script type="text/javascript" src="/leaflet.js"></script>
+        <script type="text/javascript" src="/lealfet.js"></script>
     </body>
 </html>
