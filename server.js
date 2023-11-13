@@ -3,6 +3,12 @@ const app = express()
 const port = 3000
 
 
+//Routers
+var openeoRouter = require('./routes/openeo.js'); //require add router
+//Usages (mainly routers)
+app.use('/openeo', openeoRouter);
+
+
 //Folders
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/node_modules'));

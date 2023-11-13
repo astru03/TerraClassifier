@@ -42,7 +42,24 @@ L.control.scale({imperial: true, metric: true}).addTo(map);
 //2. Funktion darf nicht ausgeführt werden, wenn ein AOI über ein Polygon ausgewählt wurde. (Wenn möglich)
 //3. Funktion darf nicht ausgeführt werden, wenn kein AOI gewählt wurde
 function showAlert1() {
-    alert('Option 1 wurde geklickt!');
+    //Wenn der Button betätigt wird, dann wird eine ajax-Anfrage durchgeführt an die openeo.js 
+    {$.ajax({ //handle request via ajax
+      url: "/openeo", //request url is the prebuild request
+      method: "POST", //Methode ist POST. Senden von Daten an den Server, ohne die gesamte Seite neu zu laden.
+      //Die POST-Methode wird oft für Operationen verwendet, bei denen Daten an den Server gesendet werden sollen, um sie zu aktualisieren, zu erstellen oder zu verarbeiten.
+      data: name
+      })
+      .done(function(response) { //if the request is done -> successful (ERGEBNIS AUS openeo.js)
+      })
+      .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
+          console.log("Request has failed"); //we log a message on the console
+      })
+      .always(function(xhr, status) { //if the request is "closed", either successful or not 
+          console.log("Request completed"); //a short message is logged
+      })
+  } 
+
+
   }
 
   function showAlert2() {
