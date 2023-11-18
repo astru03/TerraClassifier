@@ -2,11 +2,14 @@ const express = require('express');
 const app = express()
 const port = 3000
 
+//Parser for Request
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //Routers
-var openeoRouter = require('./routes/openeo.js'); //require add router
+var satellitenbilderRouter = require('./routes/satellitenbilder.js'); //require add router
 //Usages (mainly routers)
-app.use('/openeo', openeoRouter);
+app.use('/satellitenbilder', satellitenbilderRouter);
 
 
 //Folders

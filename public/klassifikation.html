@@ -58,6 +58,13 @@
         </header>
         
         <main>
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                  <span class="closeBtn" onclick="closePopup()">X</span>
+                  <p id="rectangleCoords"></p>
+                  <button onclick="closePopup()">Abbrechen</button>
+                </div>
+            </div>
             <!-- Nach dem Mock-up sollte die Karte den ganzen Bildschirm einnehmen und das Menü darüber liegen. Um die Höhe der Karte über den ganzen Bildschirm zu ziehen wird womöglich eine custom Funktion nötig sein. -->
             <div class="container-fluid mt-2" id="mapcontainer">
                 <div id="map"></div>

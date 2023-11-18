@@ -19,21 +19,42 @@ map.addControl(new L.Control.Draw( {
     draw: {
         polyline: false,
         rectangle: true,
-        polygon: true,
+        polygon: false,
         circle: false,
         circlemarker: false,
         marker: false
     }
 })) 
 
-// Event-Handler for drawing polygons
+var rectangleCoordinates = null;
+// Event-Handler for drawing rectangle
 map.on("draw:created", function(event){
-    var layer = event.layer;
+  var type = event.layerType,
+    layer = event.layer;
+
+    if (type == 'rectangle') {
+      rectangleCoordinates = layer.getBounds().toBBoxString();
+      //console.log(rectangleCoordinates);
+    }
     drawnFeatures.addLayer(layer);
 })
+// Event-Handler for editing rectangle
+map.on("draw:edited", function(event){
+  var layers = event.layers;
+  layers.eachLayer(function (layer) {
+    if (layer instanceof L.Rectangle) {
+      rectangleCoordinates = layer.getBounds().toBBoxString();
+      //console.log('Edited Rectangle Coordinates:', rectangleCoordinates);
+    }
+  });
+})
+
 
 // show the scale bar on the lower left corner
 L.control.scale({imperial: true, metric: true}).addTo(map);
+
+
+
 
 
 // Funktionen für die Aktionen des Menüs
@@ -41,25 +62,35 @@ L.control.scale({imperial: true, metric: true}).addTo(map);
 //1. Funktion darf nur ausgeführt werden, wenn auch ein AOI über das Rechteck ausgewählt wurde.
 //2. Funktion darf nicht ausgeführt werden, wenn ein AOI über ein Polygon ausgewählt wurde. (Wenn möglich)
 //3. Funktion darf nicht ausgeführt werden, wenn kein AOI gewählt wurde
-function showAlert1() {
-    //Wenn der Button betätigt wird, dann wird eine ajax-Anfrage durchgeführt an die openeo.js 
+//4. Der Funktion müssen die Koordinaten des gezeichneten Rechtecks übergeben werden
+function showAlert1(coordinates) {
+  /*
+  //Wenn der Button betätigt wird, dann wird eine ajax-Anfrage durchgeführt an die satellitenbilder.js 
     {$.ajax({ //handle request via ajax
-      url: "/openeo", //request url is the prebuild request
-      method: "POST", //Methode ist POST. Senden von Daten an den Server, ohne die gesamte Seite neu zu laden.
-      //Die POST-Methode wird oft für Operationen verwendet, bei denen Daten an den Server gesendet werden sollen, um sie zu aktualisieren, zu erstellen oder zu verarbeiten.
-      data: name
+      url: "/satellitenbilder", //request url is the prebuild request
+      method: "POST", //Methode ist POST. Senden von Daten an den Server, ohne die gesamte Seite neu zu laden. //Die POST-Methode wird oft für Operationen verwendet, bei denen Daten an den Server gesendet werden sollen, um sie zu aktualisieren, zu erstellen oder zu verarbeiten.
+      data: {coordinates: coordinates},
       })
       .done(function(response) { //if the request is done -> successful (ERGEBNIS AUS openeo.js)
       })
       .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
-          console.log("Request has failed"); //we log a message on the console
+        console.log("Request has failed :(", '/n', "Status: " + status, '/n', "Error: " + errorThrown); //we log a message on the console
       })
       .always(function(xhr, status) { //if the request is "closed", either successful or not 
           console.log("Request completed"); //a short message is logged
       })
-  } 
-
-
+    }*/
+    //------------------------------
+    var popup = document.getElementById('popup');
+    popup.style.display = 'block';
+  
+    var rectangleCoords = document.getElementById('rectangleCoords');
+    rectangleCoords.innerHTML = 'Koordinaten des Rechtecks: ' + coordinates;
+    //-----------------------------
+  }
+  function closePopup() {
+    var popup = document.getElementById('popup');
+    popup.style.display = 'none';
   }
 
   function showAlert2() {
@@ -71,7 +102,14 @@ function showAlert1() {
   }
 
   // Erstelle EasyButtons für die Aktionen des Menüs
-  var button1 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/sentinal_icon.png" style="width: 20px; height: 20px;">', showAlert1, 'Sentinal-2');
+  var button1 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/sentinal_icon.png" style="width: 20px; height: 20px;">', function() {
+    if(rectangleCoordinates) {
+      //console.log(rectangleCoordinates);
+      showAlert1(rectangleCoordinates)
+    } else {
+      console.log("Es wurde kein Rechteck gezeichnet!");
+    }
+}, 'Sentinal-2');
   var button2 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/trainigsdaten_icon.png" style="width: 20px; height: 20px;">', showAlert2, 'Trainigsdaten');
   var button3 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/algorithmus_icon.png" style="width: 20px; height: 20px;">', showAlert3, 'Algorithmus');
   
