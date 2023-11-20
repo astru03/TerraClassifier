@@ -64,6 +64,23 @@ L.control.scale({imperial: true, metric: true}).addTo(map);
 //3. Funktion darf nicht ausgeführt werden, wenn kein AOI gewählt wurde
 //4. Der Funktion müssen die Koordinaten des gezeichneten Rechtecks übergeben werden
 function showAlert1(coordinates) {
+  
+
+  fetch(`http://localhost:8080/test_satelliten?Coor=${coordinates}`)
+    .then(response => {
+      if (response.ok) {
+        // Erfolgreiche Antwort erhalten
+        console.log('Koordinaten erfolgreich übermittelt');
+      } else {
+        // Fehler bei der Antwort
+        console.error('Fehler beim Senden der Koordinaten:', response.statusText);
+      }
+    })
+    .catch(error => {
+      // Fehler beim Senden der Anfrage
+      console.error('Fehler beim Senden der Anfrage:', error);
+    });
+
   /*
   //Wenn der Button betätigt wird, dann wird eine ajax-Anfrage durchgeführt an die satellitenbilder.js 
     {$.ajax({ //handle request via ajax
@@ -80,6 +97,8 @@ function showAlert1(coordinates) {
           console.log("Request completed"); //a short message is logged
       })
     }*/
+
+    /*
     //------------------------------
     var popup = document.getElementById('popup');
     popup.style.display = 'block';
@@ -87,12 +106,16 @@ function showAlert1(coordinates) {
     var rectangleCoords = document.getElementById('rectangleCoords');
     rectangleCoords.innerHTML = 'Koordinaten des Rechtecks: ' + coordinates;
     //-----------------------------
+    */
   }
+  /*
   function closePopup() {
     var popup = document.getElementById('popup');
     popup.style.display = 'none';
-  }
+  }*/
 
+
+  
   function showAlert2() {
     alert('Option 2 wurde geklickt!');
   }

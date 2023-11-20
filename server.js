@@ -7,9 +7,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Routers
-var satellitenbilderRouter = require('./routes/satellitenbilder.js'); //require add router
+//var satellitenbilderRouter = require('./routes/satellitenbilder.js'); //require add router
 //Usages (mainly routers)
-app.use('/satellitenbilder', satellitenbilderRouter);
+//app.use('/satellitenbilder', satellitenbilderRouter);
 
 
 //Folders

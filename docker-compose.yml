@@ -1,0 +1,16 @@
+version: '3'
+services:
+  webapp:
+    build: .            # Pfad zum Dockerfile der Webanwendung
+    ports:
+      - "3000:3000"            # Port der Webanwendung
+
+  satelliten_service:
+    build: ./satelliten_service  # Pfad zum Dockerfile des EasyButton-Services
+    ports:
+      - "8080:8080"              # Port des EasyButton-Service
+
+# Netzwerk-Konfiguration für die Kommunikation zwischen den Containern
+networks:
+  my_network:
+    driver: bridge
