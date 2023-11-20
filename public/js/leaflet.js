@@ -46,7 +46,7 @@ function showAlert1() {
   }
 
   function showAlert2() {
-    alert('Option 2 wurde geklickt!');
+    document.getElementById("uploadForm");
   }
 
   function showAlert3() {
