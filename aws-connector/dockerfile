@@ -1,0 +1,12 @@
+FROM node:14
+
+WORKDIR /app
+
+# Installieren Sie die AWS SDK-Abhängigkeiten
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+CMD ["node", "awsConnector.js"]
+
