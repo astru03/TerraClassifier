@@ -1,0 +1,23 @@
+version: '3'
+services:
+  frontend:
+    image: public #public ordner ist unser Frontend-ordner?
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  backend:
+    image: backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - classification-services
+      - aws-connector
+
+  classification:
+    image: classification-services
+    
+  aws:
+    image: aws-coonector
+
