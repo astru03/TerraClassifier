@@ -21,3 +21,5 @@ services:
   aws:
     image: aws-coonector
 
+volumes:
+  database-data:

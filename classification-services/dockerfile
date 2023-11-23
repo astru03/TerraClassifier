@@ -1,0 +1,10 @@
+FROM openjdk:11
+
+WORKDIR /app
+
+COPY . .
+
+# Passen Sie die nachfolgenden Zeilen an, um Ihre Java-Anwendung zu kompilieren und auszuführen
+RUN javac src/ClassificationService.java
+
+CMD ["java", "src.ClassificationService"]
