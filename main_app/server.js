@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express()
-const port = 3000
+const port = 4000
 
 //Parser for Request
 app.use(express.json());
@@ -17,6 +17,8 @@ app.get("/klassifikation", (req, res) => { res.sendFile(__dirname + "/public/kla
 app.get("/beispiel", (req, res) => { res.sendFile(__dirname + "/public/beispiel.html"); });
 app.get("/dokumentation", (req, res) => { res.sendFile(__dirname + "/public/dokumentation.html"); });
 app.get("/impressum", (req, res) => { res.sendFile(__dirname + "/public/impressum.html"); });
+
+
 
 
 //Listener

@@ -63,10 +63,33 @@ L.control.scale({imperial: true, metric: true}).addTo(map);
 //2. Funktion darf nicht ausgeführt werden, wenn ein AOI über ein Polygon ausgewählt wurde. (Wenn möglich)
 //3. Funktion darf nicht ausgeführt werden, wenn kein AOI gewählt wurde
 //4. Der Funktion müssen die Koordinaten des gezeichneten Rechtecks übergeben werden
-function showAlert1(coordinates) {
-  
+async function showAlert1(coordinates) {
+  console.log(coordinates);
+  try {
+    const response = await fetch('http://localhost:8080/coordinates', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ coordinates })
+    });
 
-  fetch(`http://localhost:8080/test_satelliten?Coor=${coordinates}`)
+    if (response.ok) {
+        // Logik für den Umgang mit der Antwort vom Service hier
+        const data = await response.json();
+        console.log('Response from service:', data);
+    } else {
+        console.error('Failed to send coordinates to service');
+    }
+} catch (error) {
+    console.error('Error sending coordinates:', error);
+}
+/*
+
+
+
+/*
+  fetch(`http://satelliten_service:8080/test_satelliten?Coor=${coordinates}`)
     .then(response => {
       if (response.ok) {
         // Erfolgreiche Antwort erhalten
@@ -80,7 +103,7 @@ function showAlert1(coordinates) {
       // Fehler beim Senden der Anfrage
       console.error('Fehler beim Senden der Anfrage:', error);
     });
-
+/*
  
 
     /*
