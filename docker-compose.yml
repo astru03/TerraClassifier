@@ -1,7 +1,7 @@
 version: '3'
 services:
-  webapp:
-    build: .            # Pfad zum Dockerfile der Webanwendung
+  main_app:
+    build: ./main_app            # Pfad zum Dockerfile der Webanwendung
     ports:
       - "3000:3000"            # Port der Webanwendung
 
