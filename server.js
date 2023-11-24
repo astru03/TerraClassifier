@@ -6,11 +6,6 @@ const port = 3000
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//Routers
-//var satellitenbilderRouter = require('./routes/satellitenbilder.js'); //require add router
-//Usages (mainly routers)
-//app.use('/satellitenbilder', satellitenbilderRouter);
-
 
 //Folders
 app.use(express.static(__dirname + '/public'));

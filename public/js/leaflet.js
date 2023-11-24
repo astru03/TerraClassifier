@@ -81,22 +81,7 @@ function showAlert1(coordinates) {
       console.error('Fehler beim Senden der Anfrage:', error);
     });
 
-  /*
-  //Wenn der Button betätigt wird, dann wird eine ajax-Anfrage durchgeführt an die satellitenbilder.js 
-    {$.ajax({ //handle request via ajax
-      url: "/satellitenbilder", //request url is the prebuild request
-      method: "POST", //Methode ist POST. Senden von Daten an den Server, ohne die gesamte Seite neu zu laden. //Die POST-Methode wird oft für Operationen verwendet, bei denen Daten an den Server gesendet werden sollen, um sie zu aktualisieren, zu erstellen oder zu verarbeiten.
-      data: {coordinates: coordinates},
-      })
-      .done(function(response) { //if the request is done -> successful (ERGEBNIS AUS openeo.js)
-      })
-      .fail(function(xhr, status, errorThrown) { //if the request fails (for some reason)
-        console.log("Request has failed :(", '/n', "Status: " + status, '/n', "Error: " + errorThrown); //we log a message on the console
-      })
-      .always(function(xhr, status) { //if the request is "closed", either successful or not 
-          console.log("Request completed"); //a short message is logged
-      })
-    }*/
+ 
 
     /*
     //------------------------------
