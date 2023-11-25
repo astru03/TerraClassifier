@@ -7,28 +7,41 @@ app.use(bodyParser.json());
 
 // Middleware für CORS aktivieren
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:4000'); // Hier kannst du deine erlaubten Origin-Domains spezifizieren
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4000'); // Hier können die erlaubten Origin-Domains spezifiziert werden
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
 app.post('/coordinates', (req, res) => {
-    //const receivedCoordinates = req.body;
     const receivedCoordinates = req.body.coordinates;
-
     // Beispiel: Wenn die Koordinaten im Terminal ausgegeben werden sollen
     console.log(`Erhaltene Koordinaten: (${receivedCoordinates})`);
-    if (receivedCoordinates != null ) {
+
+    //Verändern der erhaltenden daten und wieder zurücksenden an Hauptseite(Client)
+    let modifiedRecCoord = { popupDisplayed: true, value: receivedCoordinates, status: 'updated', message: 'Popup wird angezeigt'}
+    console.log(modifiedRecCoord);
+    if (modifiedRecCoord != null ) {
+      res.json(modifiedRecCoord);
+    } else {
+      res.status(400).json({ error: 'Ungültige Anfrage' });
+    }
+  });
+
+
+
+
+app.post('/markerCoordinates', (req, res) => {
+    const receivedMarkerCoordinates = req.body.markerCoordinates;
+
+    // Beispiel: Wenn die Koordinaten im Terminal ausgegeben werden sollen
+    console.log(`Erhaltene Koordinaten: (${receivedMarkerCoordinates})`);
+    
+    if (receivedMarkerCoordinates != null ) {
       res.json({ popupDisplayed: true, message: 'Popup wird angezeigt' })
     } else {
       res.status(400).json({ error: 'Ungültige Anfrage' });
     }
-
-  
-    //res.sendStatus(200); // Erfolgreiche Antwort zurückgeben
   });
-
-
 
 //Listener
 app.listen(port, () => {

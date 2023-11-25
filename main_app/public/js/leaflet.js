@@ -22,11 +22,13 @@ map.addControl(new L.Control.Draw( {
         polygon: false,
         circle: false,
         circlemarker: false,
-        marker: false
+        marker: true
     }
 })) 
 
 var rectangleCoordinates = null;
+var markerCoordinates = null;
+
 // Event-Handler for drawing rectangle
 map.on("draw:created", function(event){
   var type = event.layerType,
@@ -34,8 +36,13 @@ map.on("draw:created", function(event){
 
     if (type == 'rectangle') {
       rectangleCoordinates = layer.getBounds().toBBoxString();
-      //console.log(rectangleCoordinates); 
+      console.log(rectangleCoordinates); 
     }
+    if (type == 'marker') {
+      markerCoordinates = layer.getLatLng().toString();
+      console.log(markerCoordinates); 
+    }
+
     drawnFeatures.addLayer(layer);
 })
 // Event-Handler for editing rectangle
@@ -44,11 +51,15 @@ map.on("draw:edited", function(event){
   layers.eachLayer(function (layer) {
     if (layer instanceof L.Rectangle) {
       rectangleCoordinates = layer.getBounds().toBBoxString();
-      //console.log('Edited Rectangle Coordinates:', rectangleCoordinates);
+      console.log('Edited Rectangle Coordinates:', rectangleCoordinates);
+    }
+    if (layer instanceof L.Marker) {
+      markerCoordinates = layer.getLatLng();
+      const markerCoordinates = `Latitude: ${markerCoordinates.lat}, Longitude: ${markerCoordinates.lng}`;
+      console.log('Edited Marker Coordinates:', markerCoordinates); 
     }
   });
 })
-
 
 // show the scale bar on the lower left corner
 L.control.scale({imperial: true, metric: true}).addTo(map);
@@ -78,15 +89,16 @@ async function showAlert1(coordinates) {
       throw new Error('Network response was not ok');
     }
 
-    const data = await response.json();
     // Interpretiere die Antwort des Microservices im Frontend
+    const data = await response.json();
+    //console.log(data);
     if (data.popupDisplayed) {
       console.log('Popup wurde erfolgreich angezeigt:', data.message);
-      // Füge hier Logik hinzu, um das Popup auf der Hauptseite anzuzeigen
+      // Logik um das Popup anzuzeigen
       var popup = document.getElementById('popup');
       popup.style.display = 'block';
       var rectangleCoords = document.getElementById('rectangleCoords');
-      rectangleCoords.innerHTML = 'Koordinaten des Rechtecks: ' + coordinates;
+      rectangleCoords.innerHTML = data.status + ' Koordinaten des Rechtecks: ' + data.value;
 
     } else {
       console.log('Popup konnte nicht angezeigt werden:', data.message);
@@ -96,9 +108,7 @@ async function showAlert1(coordinates) {
   }
 /*
 
-
-
-/*
+/* Beispiel. Es können auch Objekte übergeben werden
   fetch(`http://satelliten_service:8080/test_satelliten?Coor=${coordinates}`)
     .then(response => {
       if (response.ok) {
@@ -112,49 +122,77 @@ async function showAlert1(coordinates) {
     .catch(error => {
       // Fehler beim Senden der Anfrage
       console.error('Fehler beim Senden der Anfrage:', error);
-    });
-/*
- 
-
-    /*
-    //------------------------------
-    var popup = document.getElementById('popup');
-    popup.style.display = 'block';
+    }); */
+   
+}
   
-    var rectangleCoords = document.getElementById('rectangleCoords');
-    rectangleCoords.innerHTML = 'Koordinaten des Rechtecks: ' + coordinates;
-    //-----------------------------
-    */
+async  function showAlert2(markerCoordinates) {
+    try {
+      const response = await fetch('http://localhost:8080/markerCoordinates', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ markerCoordinates })
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data = await response.json();
+      // Interpretiere die Antwort des Microservices im Frontend
+      if (data.popupDisplayed) {
+        console.log('popupMarker wurde erfolgreich angezeigt:', data.message);
+        // Logik um das Popup anzuzeigen
+        var popup = document.getElementById('popupMarker');
+        popup.style.display = 'block';
+        var markerCoords = document.getElementById('markerCoords');
+        markerCoords.innerHTML = 'Koordinaten des Rechtecks: ' + markerCoordinates;
+      } else {
+        console.log('Popup konnte nicht angezeigt werden:', data.message);
+      }
+    } catch (error) {
+      console.error('Es gab einen Fehler:', error);
+    }
   }
+
+function showAlert3() {
+    alert('Option 3 wurde geklickt!');
+}
   
-  function closePopup() {
+function closePopup() {
     var popup = document.getElementById('popup');
     popup.style.display = 'none';
-  }
-
-
-  
-  function showAlert2() {
-    alert('Option 2 wurde geklickt!');
-  }
-
-  function showAlert3() {
-    alert('Option 3 wurde geklickt!');
-  }
+}
+function closeMarkerPopup() {
+    var popup = document.getElementById('popupMarker');
+    popup.style.display = 'none';
+}
 
   // Erstelle EasyButtons für die Aktionen des Menüs
   var button1 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/sentinal_icon.png" style="width: 20px; height: 20px;">', function() {
     if(rectangleCoordinates) {
       //console.log(rectangleCoordinates);
       showAlert1(rectangleCoordinates)
-    } else {
-      console.log("Es wurde kein Rechteck gezeichnet!");
-    }
+      } else {
+        console.log("Es wurde kein Rechteck gezeichnet!");
+      }
 }, 'Sentinal-2');
-  var button2 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/trainigsdaten_icon.png" style="width: 20px; height: 20px;">', showAlert2, 'Trainigsdaten');
+
+  var button2 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/trainigsdaten_icon.png" style="width: 20px; height: 20px;">', function() {
+  if(markerCoordinates) { 
+      console.log(markerCoordinates)
+      showAlert2(markerCoordinates)
+      } else {
+        console.log("Es wurde kein Marker gezeichnet!");
+      }
+}, 'Trainigsdaten');
+
+
   var button3 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/algorithmus_icon.png" style="width: 20px; height: 20px;">', showAlert3, 'Algorithmus');
   
-  // Erstelle den Haupt-Button (Burgermenü-Button)
+  // Erstellt den Haupt-Button (Burgermenü-Button)
   var toggleMenuButton = L.easyButton({
     position: 'topright',
     states: [{
