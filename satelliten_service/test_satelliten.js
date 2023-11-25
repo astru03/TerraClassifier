@@ -13,17 +13,19 @@ app.use((req, res, next) => {
 });
 
 app.post('/coordinates', (req, res) => {
-    // Koordinaten aus der GET-Anfrage erhalten
-    //const Coor = req.query;
+    //const receivedCoordinates = req.body;
     const receivedCoordinates = req.body.coordinates;
-  
+
     // Beispiel: Wenn die Koordinaten im Terminal ausgegeben werden sollen
     console.log(`Erhaltene Koordinaten: (${receivedCoordinates})`);
+    if (receivedCoordinates != null ) {
+      res.json({ popupDisplayed: true, message: 'Popup wird angezeigt' })
+    } else {
+      res.status(400).json({ error: 'Ungültige Anfrage' });
+    }
+
   
-    // Hier könntest du die Logik zur Anzeige der Koordinaten im Popup-Fenster implementieren
-    // ...
-  
-    res.sendStatus(200); // Erfolgreiche Antwort zurückgeben
+    //res.sendStatus(200); // Erfolgreiche Antwort zurückgeben
   });
 
 

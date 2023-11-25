@@ -34,7 +34,7 @@ map.on("draw:created", function(event){
 
     if (type == 'rectangle') {
       rectangleCoordinates = layer.getBounds().toBBoxString();
-      //console.log(rectangleCoordinates);
+      //console.log(rectangleCoordinates); 
     }
     drawnFeatures.addLayer(layer);
 })
@@ -74,16 +74,26 @@ async function showAlert1(coordinates) {
         body: JSON.stringify({ coordinates })
     });
 
-    if (response.ok) {
-        // Logik für den Umgang mit der Antwort vom Service hier
-        const data = await response.json();
-        console.log('Response from service:', data);
-    } else {
-        console.error('Failed to send coordinates to service');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-} catch (error) {
-    console.error('Error sending coordinates:', error);
-}
+
+    const data = await response.json();
+    // Interpretiere die Antwort des Microservices im Frontend
+    if (data.popupDisplayed) {
+      console.log('Popup wurde erfolgreich angezeigt:', data.message);
+      // Füge hier Logik hinzu, um das Popup auf der Hauptseite anzuzeigen
+      var popup = document.getElementById('popup');
+      popup.style.display = 'block';
+      var rectangleCoords = document.getElementById('rectangleCoords');
+      rectangleCoords.innerHTML = 'Koordinaten des Rechtecks: ' + coordinates;
+
+    } else {
+      console.log('Popup konnte nicht angezeigt werden:', data.message);
+    }
+  } catch (error) {
+    console.error('Es gab einen Fehler:', error);
+  }
 /*
 
 
@@ -116,11 +126,11 @@ async function showAlert1(coordinates) {
     //-----------------------------
     */
   }
-  /*
+  
   function closePopup() {
     var popup = document.getElementById('popup');
     popup.style.display = 'none';
-  }*/
+  }
 
 
   
