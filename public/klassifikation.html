@@ -30,6 +30,14 @@
         <!-- Leaflet-easy-button plugin JS-->
         <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
 
+        <!--jQuery-->
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        
+        <!--jQuery UI CSS-->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+        
+        <!--jQuery UI JS-->
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     </head>
     <body>
         <header> 
@@ -55,6 +63,27 @@
         </header>
         
         <main>
+            <div id="popup" class="popup">
+                <div class="form-group">
+                    <label for="northeast-coordinates">Koordinaten Nordosten:</label>
+                    <!-- <input type="text" class="form-control" id="northeastCoordinates" readonly> -->
+                    <p id="northeastCoordinates"></p> 
+                </div>
+                <div class="form-group">
+                    <label for="southwest-coordinates">Koordinaten Südwesten:</label>
+                    <!-- <input type="text" class="form-control" id="southwestCoordinates" readonly> -->
+                    <p id="southwestCoordinates"></p> 
+                </div>
+                <div class="form-group">
+                    <label for="datepicker">Zeitraum</label> <br>
+                    <label for="fromDate">Von:</label>
+                    <input type="text" id="fromDate">
+                    <label for="toDate">Bis:</label>
+                    <input type="text" id="toDate">
+                </div>
+                <span class="closeBtn" onclick="closePopup()">X</span>
+                <button onclick="closePopup()">Abbrechen</button>
+            </div>
             <!-- Nach dem Mock-up sollte die Karte den ganzen Bildschirm einnehmen und das Menü darüber liegen. Um die Höhe der Karte über den ganzen Bildschirm zu ziehen wird womöglich eine custom Funktion nötig sein. -->
             <div class="container-fluid mt-2" id="mapcontainer">
                 <div id="map"></div>
