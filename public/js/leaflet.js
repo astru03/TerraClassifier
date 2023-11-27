@@ -96,7 +96,12 @@ function showAlert2() {
 function showAlert3() {
     alert('Option 3 wurde geklickt!');
 }
-
+function showAlert4() {
+  alert('Option 4 wurde geklickt!');
+}
+function showAlert5() {
+  alert('Option 5 wurde geklickt!');
+}
 function closePopup() {
     var popup = document.getElementById('popup');
     popup.style.display = 'none';
@@ -114,7 +119,9 @@ var button1 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/
   
 var button2 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/trainigsdaten_icon.png" style="width: 20px; height: 20px;">', showAlert2, 'Trainigsdaten');
 var button3 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/algorithmus_icon.png" style="width: 20px; height: 20px;">', showAlert3, 'Algorithmus');
-  
+var button4 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/modeltraining_icon.png" style="width: 20px; height: 20px;">', showAlert4, 'Modeltraining');
+var button5 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/klassifikation_icon.png" style="width: 20px; height: 20px;">', showAlert5, 'Klassifikation');
+    
 // Erstelle den Haupt-Button (Burgermenü-Button)
 var toggleMenuButton = L.easyButton({
   position: 'topright',
@@ -127,6 +134,8 @@ var toggleMenuButton = L.easyButton({
       button1.addTo(map).setPosition('topright');
       button2.addTo(map).setPosition('topright');
       button3.addTo(map).setPosition('topright');
+      button4.addTo(map).setPosition('topright');
+      button5.addTo(map).setPosition('topright');
     }
   }, {
     stateName: 'open',
@@ -137,6 +146,8 @@ var toggleMenuButton = L.easyButton({
       button1.remove();
       button2.remove();
       button3.remove();
+      button4.remove()
+      button5.remove()
     }
   }]
 });
