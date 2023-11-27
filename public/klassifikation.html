@@ -63,15 +63,14 @@
         </header>
         
         <main>
-            <div id="popup" class="popup">
+            <!-- Popup satellite images -->
+            <div id="popup_sat" class="popup">
                 <div class="form-group">
                     <label for="northeast-coordinates">Koordinaten Nordosten:</label>
-                    <!-- <input type="text" class="form-control" id="northeastCoordinates" readonly> -->
                     <p id="northeastCoordinates"></p> 
                 </div>
                 <div class="form-group">
                     <label for="southwest-coordinates">Koordinaten Südwesten:</label>
-                    <!-- <input type="text" class="form-control" id="southwestCoordinates" readonly> -->
                     <p id="southwestCoordinates"></p> 
                 </div>
                 <div class="form-group">
@@ -81,9 +80,45 @@
                     <label for="toDate">Bis:</label>
                     <input type="text" id="toDate">
                 </div>
-                <span class="closeBtn" onclick="closePopup()">X</span>
-                <button onclick="closePopup()">Abbrechen</button>
+                <span class="closeBtn" onclick="closePopup('popup_sat')">X</span>
+                <button onclick="getSatelliteImages()">Ok</button>
+                <button onclick="closePopup('popup_sat')">Abbrechen</button>
             </div>
+
+            <!-- If no rectangle was selected, corresponding popup opens -->
+            <div id="popup_NoRectangle" class="popup">
+                <div class="form-group">
+                    <label for="NoRectangle">Bitte wählen Sie zuerst ein Rechteck (AOI) aus</label>
+                </div>
+                <span class="closeBtn" onclick="closePopup('popup_NoRectangle')">X</span>
+                <button onclick="firstSelectRectangle()">Ok</button>
+            </div>
+
+            <!-- Popup algorithm -->
+            <div id="popup_algo" class="popup">
+                <div class="form-group">
+                    <label for="choose_algo">Bitte wählen Sie ein Algorithmus</label>
+                </div>
+                <div class="form-group">
+                    <label>
+                      <input type="checkbox" class="form-check-input" id="algorithmNearestNeighbor">
+                      Nearest neighbor
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <input type="checkbox" class="form-check-input" id="algorithmRandomForrest">
+                      Random forest
+                    </label>
+                  </div>
+                <span class="closeBtn" onclick="closePopup('popup_algo')">X</span>
+                <button onclick="useSelectedAlgorithm()">Ok</button>
+                <button onclick="closePopup('popup_algo')">Abbrechen</button>
+            </div>
+
+
+
+
             <!-- Nach dem Mock-up sollte die Karte den ganzen Bildschirm einnehmen und das Menü darüber liegen. Um die Höhe der Karte über den ganzen Bildschirm zu ziehen wird womöglich eine custom Funktion nötig sein. -->
             <div class="container-fluid mt-2" id="mapcontainer">
                 <div id="map"></div>

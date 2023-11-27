@@ -61,18 +61,17 @@ L.control.scale({imperial: true, metric: true}).addTo(map);
 //1. Funktion darf nur ausgeführt werden, wenn auch ein AOI über das Rechteck ausgewählt wurde.
 //2. Funktion darf nicht ausgeführt werden, wenn ein AOI über ein Polygon ausgewählt wurde. (Wenn möglich)
 //3. Funktion darf nicht ausgeführt werden, wenn kein AOI gewählt wurde
-function showAlert1(coordinates) {
+function satelliteImages(coordinates) {
   let NorthEastCoordinates = 'Lat: ' + coordinates.getNorthEast().lat.toFixed(4) + ' ; Lng: ' + coordinates.getNorthEast().lng.toFixed(4);
   console.log(NorthEastCoordinates);
   let SouthwestCoordinates = 'Lat: ' + coordinates.getSouthWest().lat.toFixed(4) + ' ; Lng: ' + coordinates.getSouthWest().lng.toFixed(4);
   console.log(SouthwestCoordinates);
-  var popup = document.getElementById('popup');
+  var popup = document.getElementById('popup_sat');
   popup.style.display = 'block';
   var recNortheastCoords = document.getElementById('northeastCoordinates');
   var recSouthwestCoords = document.getElementById('southwestCoordinates');
   recNortheastCoords.innerHTML = NorthEastCoordinates;
   recSouthwestCoords.innerHTML = SouthwestCoordinates;
-  
   //Datepicker
   $('#popup').show();
   initDatepickers();
@@ -82,45 +81,81 @@ function initDatepickers() {
   $('#fromDate').datepicker({
     dateFormat: 'dd.mm.yy' // Format des Datums
   });
-
   $('#toDate').datepicker({
     dateFormat: 'dd.mm.yy' // Format des Datums
   });
 }
 
+function getSatelliteImages() {
+  console.log('Besorge Satellitenbilder über STAC API');
+  var popup = document.getElementById('popup_sat');
+  popup.style.display = 'none';
+  
+}
 
-function showAlert2() {
+function trainingData() {
     alert('Option 2 wurde geklickt!');
 }
 
-function showAlert3() {
-    alert('Option 3 wurde geklickt!');
+function algorithm() {
+    var popup = document.getElementById('popup_algo');
+    popup.style.display = 'block';
 }
-function showAlert4() {
+
+function useSelectedAlgorithm() {
+  var algorithmNN = document.getElementById('algorithmNearestNeighbor').checked;
+  var algorithmRF = document.getElementById('algorithmRandomForrest').checked;
+  console.log('Nearest neighbor Algorithmus ausgewählt:', algorithmNN);
+  console.log('Random forest Algorithmus ausgewählt:', algorithmRF);
+  var popup = document.getElementById('popup_algo');
+  popup.style.display = 'none';
+}
+
+function modelTraining() {
   alert('Option 4 wurde geklickt!');
 }
-function showAlert5() {
+function classification() {
   alert('Option 5 wurde geklickt!');
 }
-function closePopup() {
-    var popup = document.getElementById('popup');
-    popup.style.display = 'none';
+
+function closePopup(ID_Popup) {
+    console.log(ID_Popup);
+    if (ID_Popup == 'popup_sat') {
+      var popup = document.getElementById('popup_sat');
+      popup.style.display = 'none';
+    } else if (ID_Popup == 'popup_algo') {
+      var popup = document.getElementById('popup_algo');
+      popup.style.display = 'none';
+    } else if (ID_Popup == 'popup_NoRectangle') {
+      var popup = document.getElementById('popup_NoRectangle');
+      popup.style.display = 'none';
+    }
+}
+
+function showPopupNoRectangle() {
+  var popup = document.getElementById('popup_NoRectangle');
+  popup.style.display = 'block';
+}
+function firstSelectRectangle() {
+  var popup = document.getElementById('popup_NoRectangle');
+  popup.style.display = 'none';
 }
 
 // Erstelle EasyButtons für die Aktionen des Menüs
 var button1 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/sentinal_icon.png" style="width: 20px; height: 20px;">', function() {
   if(rectangleCoordinates) {
     //console.log(rectangleCoordinates);
-    showAlert1(rectangleCoordinates)
+    satelliteImages(rectangleCoordinates)
   } else {
     console.log("Es wurde kein Rechteck gezeichnet!");
+    showPopupNoRectangle();
   }
 }, 'Sentinal-2');
   
-var button2 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/trainigsdaten_icon.png" style="width: 20px; height: 20px;">', showAlert2, 'Trainigsdaten');
-var button3 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/algorithmus_icon.png" style="width: 20px; height: 20px;">', showAlert3, 'Algorithmus');
-var button4 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/modeltraining_icon.png" style="width: 20px; height: 20px;">', showAlert4, 'Modeltraining');
-var button5 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/klassifikation_icon.png" style="width: 20px; height: 20px;">', showAlert5, 'Klassifikation');
+var button2 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/trainigsdaten_icon.png" style="width: 20px; height: 20px;">', trainingData, 'Trainigsdaten');
+var button3 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/algorithmus_icon.png" style="width: 20px; height: 20px;">', algorithm, 'Algorithmus');
+var button4 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/modeltraining_icon.png" style="width: 20px; height: 20px;">', modelTraining, 'Modeltraining');
+var button5 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/klassifikation_icon.png" style="width: 20px; height: 20px;">', classification, 'Klassifikation');
     
 // Erstelle den Haupt-Button (Burgermenü-Button)
 var toggleMenuButton = L.easyButton({
