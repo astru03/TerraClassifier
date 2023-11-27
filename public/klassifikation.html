@@ -86,13 +86,32 @@
             </div>
 
             <!-- If no rectangle was selected, corresponding popup opens -->
+            
+            <div class="modal fade" id="popup_NoRectangle" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="myModalLabel">Fehler</h4>
+                    </div>
+                    <div class="modal-body">
+                        Bitte zeichnen Sie zuerst ein Rechteck auf die Karte und definieren somit ein Area of Intrest (AOI).
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-info" onclick="closePopup('popup_NoRectangle')">Ok</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!-- Altes Beispiel eines unschönen Popups --->
+            <!--
             <div id="popup_NoRectangle" class="popup">
                 <div class="form-group">
                     <label for="NoRectangle">Bitte wählen Sie zuerst ein Rechteck (AOI) aus</label>
                 </div>
                 <span class="closeBtn" onclick="closePopup('popup_NoRectangle')">X</span>
                 <button onclick="firstSelectRectangle()">Ok</button>
-            </div>
+            </div> -->
+
 
             <!-- Popup algorithm -->
             <div id="popup_algo" class="popup">

@@ -127,14 +127,16 @@ function closePopup(ID_Popup) {
       var popup = document.getElementById('popup_algo');
       popup.style.display = 'none';
     } else if (ID_Popup == 'popup_NoRectangle') {
-      var popup = document.getElementById('popup_NoRectangle');
-      popup.style.display = 'none';
+      //var popup = document.getElementById('popup_NoRectangle');
+      //popup.style.display = 'none';
+      $('#popup_NoRectangle').modal('hide');
     }
 }
 
 function showPopupNoRectangle() {
-  var popup = document.getElementById('popup_NoRectangle');
-  popup.style.display = 'block';
+  //var popup = document.getElementById('popup_NoRectangle');
+  //popup.style.display = 'block';
+  $('#popup_NoRectangle').modal('show');
 }
 function firstSelectRectangle() {
   var popup = document.getElementById('popup_NoRectangle');
