@@ -66,31 +66,19 @@ function satelliteImages(coordinates) {
   console.log(NorthEastCoordinates);
   let SouthwestCoordinates = 'Lat: ' + coordinates.getSouthWest().lat.toFixed(4) + ' ; Lng: ' + coordinates.getSouthWest().lng.toFixed(4);
   console.log(SouthwestCoordinates);
-  var popup = document.getElementById('popup_sat');
-  popup.style.display = 'block';
-  var recNortheastCoords = document.getElementById('northeastCoordinates');
-  var recSouthwestCoords = document.getElementById('southwestCoordinates');
-  recNortheastCoords.innerHTML = NorthEastCoordinates;
-  recSouthwestCoords.innerHTML = SouthwestCoordinates;
-  //Datepicker
-  $('#popup').show();
-  initDatepickers();
+  document.getElementById('northeastCoordinates').value = NorthEastCoordinates;
+  document.getElementById('southwestCoordinates').value = SouthwestCoordinates;
+  $('#popup_sat').modal('show');
 }
-
-function initDatepickers() {
-  $('#fromDate').datepicker({
-    dateFormat: 'dd.mm.yy' // Format des Datums
-  });
-  $('#toDate').datepicker({
-    dateFormat: 'dd.mm.yy' // Format des Datums
-  });
-}
+// Initialize Bootstrap Datepicker for 'fromDate' and 'toDate' input fields
+$('#fromDate, #toDate').datepicker({
+  format: 'dd/mm/yyyy', // Date format
+  autoclose: true, // Close the datepicker when a date is selected
+  todayHighlight: true, // Highlight today's date
+});
 
 function getSatelliteImages() {
-  console.log('Besorge Satellitenbilder über STAC API');
-  var popup = document.getElementById('popup_sat');
-  popup.style.display = 'none';
-  
+  $('#popup_sat').modal('hide');
 }
 
 function trainingData() {
@@ -121,21 +109,16 @@ function classification() {
 function closePopup(ID_Popup) {
     console.log(ID_Popup);
     if (ID_Popup == 'popup_sat') {
-      var popup = document.getElementById('popup_sat');
-      popup.style.display = 'none';
+      $('#popup_sat').modal('hide');
     } else if (ID_Popup == 'popup_algo') {
       var popup = document.getElementById('popup_algo');
       popup.style.display = 'none';
     } else if (ID_Popup == 'popup_NoRectangle') {
-      //var popup = document.getElementById('popup_NoRectangle');
-      //popup.style.display = 'none';
       $('#popup_NoRectangle').modal('hide');
     }
 }
 
 function showPopupNoRectangle() {
-  //var popup = document.getElementById('popup_NoRectangle');
-  //popup.style.display = 'block';
   $('#popup_NoRectangle').modal('show');
 }
 function firstSelectRectangle() {
@@ -146,7 +129,6 @@ function firstSelectRectangle() {
 // Erstelle EasyButtons für die Aktionen des Menüs
 var button1 = L.easyButton('<img src="https://raw.githubusercontent.com/astru03/TerraClassifier/main/public/images/sentinal_icon.png" style="width: 20px; height: 20px;">', function() {
   if(rectangleCoordinates) {
-    //console.log(rectangleCoordinates);
     satelliteImages(rectangleCoordinates)
   } else {
     console.log("Es wurde kein Rechteck gezeichnet!");
