@@ -1,7 +1,7 @@
 html {
     position: relative;
     height: 100%;
-    padding-bottom:160px;
+    padding-bottom:auto;
   }
   footer {
     position: absolute;
@@ -9,12 +9,40 @@ html {
     width: 100%;
     height: 87px;
   }
+  
+  body {
+    height: 100%;
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+  }
+
+
   #logo {
     width: 100px;
     height: auto;
   }
   
+  main {
+    /* display: table-row; */
+   display: flex;
+   justify-content: center;
+   background-image: url("../images/blue-technology-1920x1080.jpg");
+   background-repeat: no-repeat;
+   background-size: cover ;
+   height:100%;
+  }
 
+  .main-content {
+    background-image: url('../images/blue-technology-1920x1080.jpg'), url('pfad/zum/linken-bild.jpg'), url('pfad/zum/rechten-bild.jpg');
+    background-size: cover, auto, auto; 
+    background-position: center, left, right; 
+    height: 100vh; /* 100% der Bildschirmhöhe */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* color: #fff;  */
+}
 
 
 
