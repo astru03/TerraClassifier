@@ -2,9 +2,9 @@ version: '3'
 services:
   main_app:
     container_name: main_app
-    build: ./main_app            # Pfad zum Dockerfile der Webanwendung
+    build: ./main_app            # Pfad zum Dockerfile der Webanwendung. Baut daraus ein Image 
     ports:
-      - "4000:4000"            # Port der Webanwendung 
+      - "4000:4000"            # Port 4000 des Host wird gemappt auf Port 4000 des Container, der das Image ausführt
 
   satelliten_service:
     container_name: satelliten_service

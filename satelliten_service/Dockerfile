@@ -3,11 +3,12 @@ FROM node:14
 WORKDIR /app
 # Copy app code source from our local folder into docker /app working directory
 COPY . .
-
 # Install app dependencies
 RUN npm install 
+# envirementVariable
+ENV PORT=8080
 # Install app on a given port
 EXPOSE 8080
 # start app
-ENTRYPOINT ["npm", "start"]
+CMD ["npm", "start"]
 
