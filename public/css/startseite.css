@@ -1,7 +1,7 @@
 html {
-   /* position: relative;*/
+   position: relative;
     height: 100%;
-   /* padding-bottom:auto;*/
+   padding-bottom:auto;
   }
  
   body {
@@ -13,20 +13,35 @@ html {
   }
 
 
-  footer {
-    position: absolute;
+ footer {
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 87px;
-    margin-top: auto; /*Höhe des Footers*/
+    margin-top: auto; 
     display: table-row;
   }
 
   main {
-    display: table-row;
-    height: 100%;
+    /* display: table-row; */
+   display: flex;
+   justify-content: center;
+   background-image: url("../images/blue-technology-1920x1080.jpg");
+   background-repeat: no-repeat;
+   background-size: cover ;
+   height:100%;
   }
 
+  .main-content {
+    background-image: url('../images/blue-technology-1920x1080.jpg'), url('pfad/zum/linken-bild.jpg'), url('pfad/zum/rechten-bild.jpg');
+    background-size: cover, auto, auto; 
+    background-position: center, left, right; 
+    height: 100vh; /* 100% der Bildschirmhöhe */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* color: #fff;  */
+}
   
   #logo {
     width: 100px;
@@ -36,7 +51,7 @@ html {
   /*
   #content-wrap {
     padding-bottom: 2.5rem;  */  /* Footer height */
-  /* } */
+  /* }
 
 
 
@@ -88,3 +103,7 @@ html {
     font-size: 2.5rem;
   }
 }
+
+
+
+
