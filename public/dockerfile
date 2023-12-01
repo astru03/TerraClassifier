@@ -1,3 +1,15 @@
-FROM nginx:alpine
-
-COPY . /usr/share/nginx/html
+FROM node:14
+# Setzen des Arbeitsverzeichnisses auf /usr/src/app
+WORKDIR /usr/src/app
+# Kopieren der package.json und package-lock.json in das Arbeitsverzeichnis /usr/src/app
+COPY package*.json ./
+# Installieren der dependencies die in dem package.json stehen
+RUN npm install
+# Kopieren des Quellcodes (Alle localen files in denen dieses dockerfile steht) in das Arbeitsverzeichnis /usr/src/app
+COPY . .
+# envirementVariable
+ENV PORT=3000
+# Expose app on a given port
+EXPOSE 3000
+# Start app
+CMD ["npm", "start"]
